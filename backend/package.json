@@ -1,0 +1,49 @@
+{
+  "name": "nodejs-boilerplate",
+  "version": "1.0.0",
+  "description": "My NodeJS boilerplate",
+  "main": "index.js",
+  "repository": "git@github.com:MarcelLZ/nodejs-boilerplate.git",
+  "author": "Marcel Zanluca <marcel.zanluca@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn clean && ./node_modules/.bin/babel src -d dist",
+    "test": "./node_modules/.bin/jest",
+    "test:watch": "./node_modules/.bin/jest --watch",
+    "test:coverage": "yarn test -- --coverage",
+    "start": "node dist",
+    "start:dev": "nodemon --exec babel-node src"
+  },
+  "standard": {
+    "globals": [
+      "jest",
+      "beforeEach",
+      "afterEach",
+      "describe",
+      "xdescribe",
+      "it",
+      "xit",
+      "expect",
+      "context",
+      "mount",
+      "test"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^22.1.4",
+    "nodemon": "^1.14.12",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.0.3",
+    "morgan": "^1.9.0"
+  }
+}
