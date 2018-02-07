@@ -10,5 +10,11 @@ export default {
     rules: [
       { required: true, message: 'Campo obrigatório' }
     ]
+  },
+
+  repassword: {
+    rules: [
+      { required: true, message: 'Campo obrigatório' }
+    ]
   }
 }
