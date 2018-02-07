@@ -6,6 +6,10 @@ const PATH = {
   PUBLIC: join(__dirname, '..', 'public')
 }
 
+const PATH_VENDOR = {
+  REACT_MDL: join(PATH.NODE_MODULES, 'react-mdl', 'extra')
+}
+
 module.exports = {
   PATH,
 
@@ -15,6 +19,12 @@ module.exports = {
       exclude: PATH.NODE_MODULES,
       include: PATH.SRC,
       use: 'babel-loader'
+    },
+
+    cssLoaderVendors: {
+      test: /\.css$/,
+      include: [PATH_VENDOR.REACT_MDL],
+      use: ['style-loader', 'css-loader']
     },
 
     stylusLoader: {
@@ -54,7 +64,7 @@ module.exports = {
   },
 
   html: {
-    title: 'Page Title',
+    title: 'Barbecue Company',
     favicon: '',
     template: join(PATH.SRC, 'template.html')
   },

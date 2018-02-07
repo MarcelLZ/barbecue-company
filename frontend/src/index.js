@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { AppContainer } from 'react-hot-loader'
 
+import 'react-mdl/extra/material.css'
+import 'react-mdl/extra/material.js'
+
 import reducers from 'redux-flow'
 import Root from './app'
 
