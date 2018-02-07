@@ -1,0 +1,49 @@
+{
+  "name": "react-boilerplate",
+  "version": "0.0.1",
+  "description": "My React Boilerplate",
+  "main": "index.js",
+  "repository": "git@github.com:MarcelLZ/react-boilerplate.git",
+  "author": "Marcel Zanluca <marcel.zanluca@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dashboard -- node webpack/dashboard.js --open",
+    "build": "cross-env NODE_ENV='production' node_modules/.bin/webpack --config webpack/prod.config -p --progress"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "react-hot-loader": "^3.1.3",
+    "standard": "^10.0.3",
+    "style-loader": "^0.20.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-dashboard": "^1.1.1",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
