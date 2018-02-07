@@ -1,31 +1,30 @@
-import React from 'react'
-import {
-  Grid, Cell,
-  DataTable, TableHeader
-} from 'react-mdl'
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getAllCompanies } from 'redux-flow/companies/reducer'
 
+import Loading from 'components/loading'
 import AppLayout from 'components/layout'
+import Companies from './companies'
 
-const empresas = [
-  { name: 'Druptec Soluções', cnpj: '28.354.669/0001-09', qtdPedidos: 2 },
-  { name: 'BRFoods', cnpj: '35.577.109/0001-70', qtdPedidos: 1 },
-  { name: 'PasquePag', cnpj: '34.763.818/0001-88', qtdPedidos: 2 }
-]
+class Dashboard extends PureComponent {
+  componentDidMount () {
+    const { getAllCompanies } = this.props
+    getAllCompanies()
+  }
 
-const Dashboard = () => (
-  <AppLayout breadcrumb='Dashboard'>
-    <Grid style={{ width: '70%' }}>
-      <Cell col={12}>
+  render () {
+    const { isFetching, companies } = this.props
 
-        <DataTable shadow={0} rows={empresas} style={{ width: '100%' }}>
-          <TableHeader name='name'>Nome</TableHeader>
-          <TableHeader name='cnpj'>CNPJ</TableHeader>
-          <TableHeader name='qtdPedidos'>Qtd. Pedidos</TableHeader>
-        </DataTable>
+    return [
+      <Loading key='loading' fetching={isFetching} />,
+      <AppLayout key='dashboard'>
+        <Companies companies={companies} />
+      </AppLayout>
+    ]
+  }
+}
 
-      </Cell>
-    </Grid>
-  </AppLayout>
-)
-
-export default Dashboard
+const mapStateToProps = ({ companies }) => ({ ...companies })
+const mapDispatchToProps = dispatch => bindActionCreators({ getAllCompanies }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

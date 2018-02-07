@@ -1,25 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {
-  Layout, Header, Content,
-  Navigation
-} from 'react-mdl'
+import { Layout, Header, Content } from 'react-mdl'
+
+import Sidebar from './sidebar'
 
 const AppLayout = ({ breadcrumb, children }) => (
-  <Layout fixedHeader>
-
-    <Header title={<span>{ breadcrumb }</span>}>
-      <Navigation>
-        <Link to='/'>Dashboard</Link>
-        <Link to='/'>Pedidos</Link>
-        <Link to='/'>Perfil</Link>
-      </Navigation>
-    </Header>
-
-    <Content>
-      { children }
-    </Content>
-
+  <Layout fixedHeader fixedDrawer>
+    <Header title={<span>Barbecue Company</span>} />
+    <Sidebar />
+    <Content>{ children }</Content>
   </Layout>
 )
 
