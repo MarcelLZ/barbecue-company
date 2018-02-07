@@ -50,7 +50,7 @@ class NewAccountForm extends PureComponent {
         />
 
         <div className={style.actions}>
-          <Link to='/'>Go back</Link>
+          <Link to='/'>Voltar</Link>
           <Button onClick={this.submit}>Cadastrar!</Button>
         </div>
       </form>
