@@ -19,31 +19,16 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Header
-          title={<span />}
-        >
-          <Navigation>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Dashboard
-            </Link>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Pedidos
-            </Link>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Perfil
-            </Link>
-          </Navigation>
-        </Header>,
+          title={
+            <span>
+              Barbecue Company
+            </span>
+          }
+        />,
+        <Sidebar />,
         <Content />,
       ],
+      "fixedDrawer": true,
       "fixedHeader": true,
     },
     "ref": null,
@@ -53,99 +38,21 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": <Navigation>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Dashboard
-            </Link>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Pedidos
-            </Link>
-            <Link
-              replace={false}
-              to="/"
-            >
-              Perfil
-            </Link>
-          </Navigation>,
-          "title": <span />,
+          "title": <span>
+            Barbecue Company
+          </span>,
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": Array [
-              <Link
-                replace={false}
-                to="/"
-              >
-                Dashboard
-              </Link>,
-              <Link
-                replace={false}
-                to="/"
-              >
-                Pedidos
-              </Link>,
-              <Link
-                replace={false}
-                to="/"
-              >
-                Perfil
-              </Link>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Dashboard",
-                "replace": false,
-                "to": "/",
-              },
-              "ref": null,
-              "rendered": "Dashboard",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Pedidos",
-                "replace": false,
-                "to": "/",
-              },
-              "ref": null,
-              "rendered": "Pedidos",
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Perfil",
-                "replace": false,
-                "to": "/",
-              },
-              "ref": null,
-              "rendered": "Perfil",
-              "type": [Function],
-            },
-          ],
-          "type": [Function],
-        },
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
         "type": [Function],
       },
       Object {
@@ -170,31 +77,16 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Header
-            title={<span />}
-          >
-            <Navigation>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Dashboard
-              </Link>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Pedidos
-              </Link>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Perfil
-              </Link>
-            </Navigation>
-          </Header>,
+            title={
+              <span>
+                Barbecue Company
+              </span>
+            }
+          />,
+          <Sidebar />,
           <Content />,
         ],
+        "fixedDrawer": true,
         "fixedHeader": true,
       },
       "ref": null,
@@ -204,99 +96,21 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": <Navigation>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Dashboard
-              </Link>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Pedidos
-              </Link>
-              <Link
-                replace={false}
-                to="/"
-              >
-                Perfil
-              </Link>
-            </Navigation>,
-            "title": <span />,
+            "title": <span>
+              Barbecue Company
+            </span>,
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <Link
-                  replace={false}
-                  to="/"
-                >
-                  Dashboard
-                </Link>,
-                <Link
-                  replace={false}
-                  to="/"
-                >
-                  Pedidos
-                </Link>,
-                <Link
-                  replace={false}
-                  to="/"
-                >
-                  Perfil
-                </Link>,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Dashboard",
-                  "replace": false,
-                  "to": "/",
-                },
-                "ref": null,
-                "rendered": "Dashboard",
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Pedidos",
-                  "replace": false,
-                  "to": "/",
-                },
-                "ref": null,
-                "rendered": "Pedidos",
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "Perfil",
-                  "replace": false,
-                  "to": "/",
-                },
-                "ref": null,
-                "rendered": "Perfil",
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
           "type": [Function],
         },
         Object {

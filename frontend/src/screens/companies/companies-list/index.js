@@ -5,7 +5,7 @@ import {
   List, ListItem, ListItemContent, ListItemAction
 } from 'react-mdl'
 
-const Companies = ({ companies }) => (
+const CompaniesList = ({ companies }) => (
   <Grid>
     <Cell col={12} hidePhone>
       <DataTable shadow={0} rows={companies} style={{ width: '100%' }}>
@@ -34,4 +34,4 @@ const Companies = ({ companies }) => (
   </Grid>
 )
 
-export default Companies
+export default CompaniesList
