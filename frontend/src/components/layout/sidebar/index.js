@@ -8,7 +8,7 @@ const Sidebar = () => (
   <Drawer>
     <Navigation>
       <NavigationItem
-        to='/'
+        to='/dashboard'
         icon='home'
         description='Dashboard'
       />
@@ -28,9 +28,9 @@ const Sidebar = () => (
       <Divisor />
 
       <NavigationItem
-        to='/usuarios'
+        to='/profile'
         icon='mood'
-        description='Usuários'
+        description='Minha conta'
       />
     </Navigation>
   </Drawer>
