@@ -2,12 +2,12 @@ import {
   GET_COMPANIES_REQUEST,
   GET_COMPANIES_RESPONSE,
   GET_COMPANIES_ERROR,
-  NEW_COMPANY
+  NEW_COMPANY_REQUEST,
+  NEW_COMPANY_RESPONSE
 } from './actions'
 
 const initialState = {
   isFetching: false,
-  isNew: false,
   hasError: false,
   errorMessage: '',
   companies: []
@@ -36,10 +36,17 @@ const companies = (state = initialState, action) => {
         errorMessage: action.error.message
       }
 
-    case NEW_COMPANY:
+    case NEW_COMPANY_REQUEST:
       return {
         ...state,
-        isNew: true
+        isFetching: true
+      }
+
+    case NEW_COMPANY_RESPONSE:
+      return {
+        ...state,
+        isFetching: false,
+        companies: action.data
       }
   }
 

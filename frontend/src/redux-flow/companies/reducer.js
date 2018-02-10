@@ -1,32 +1,42 @@
-// import api from 'utils/api'
+import api from 'utils/api'
 import {
   GET_COMPANIES_REQUEST,
   GET_COMPANIES_RESPONSE,
-  GET_COMPANIES_ERROR
+  GET_COMPANIES_ERROR,
+  NEW_COMPANY_REQUEST,
+  NEW_COMPANY_RESPONSE,
+  NEW_COMPANY_ERROR
 } from './actions'
 
 export const getAllCompanies = () => dispatch => {
   dispatch({ type: GET_COMPANIES_REQUEST })
 
-  setTimeout(() => {
-    dispatch({
+  api
+    .get('/companies')
+    .then(({ data }) => dispatch({
       type: GET_COMPANIES_RESPONSE,
-      data: [
-        { _id: 1, name: 'Druptec Soluções', cnpj: '28.354.669/0001-09', totalOrders: 2 },
-        { _id: 2, name: 'BRFoods', cnpj: '35.577.109/0001-70', totalOrders: 1 },
-        { _id: 3, name: 'PasquePag', cnpj: '34.763.818/0001-88', totalOrders: 2 }
-      ]
-    })
-  }, 2000)
+      data
+    }))
+    .catch(error => dispatch({
+      type: GET_COMPANIES_ERROR,
+      error
+    }))
+}
 
-  // api
-  //   .get('/companies')
-  //   .then(companies => dispatch({
-  //     type: GET_COMPANIES_RESPONSE,
-  //     data: companies
-  //   }))
-  //   .catch(error => dispatch({
-  //     type: GET_COMPANIES_ERROR,
-  //     error
-  //   }))
+export const newCompany = company => (dispatch, getState) => {
+  dispatch({ type: NEW_COMPANY_REQUEST })
+  const { companies } = getState()
+
+  return api
+    .post('/companies', company)
+    .then(({ data }) => {
+      dispatch({
+        type: NEW_COMPANY_RESPONSE,
+        data: [ ...companies.companies, data ]
+      })
+    })
+    .catch(error => dispatch({
+      type: NEW_COMPANY_ERROR,
+      error
+    }))
 }

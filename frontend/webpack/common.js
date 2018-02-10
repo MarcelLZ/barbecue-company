@@ -73,7 +73,8 @@ module.exports = {
     'redux-flow': join(PATH.SRC, 'redux-flow'),
     'components': join(PATH.SRC, 'components'),
     'containers': join(PATH.SRC, 'containers'),
-    'screens': join(PATH.SRC, 'screens')
+    'screens': join(PATH.SRC, 'screens'),
+    'utils': join(PATH.SRC, 'utils')
   },
 
   server: {

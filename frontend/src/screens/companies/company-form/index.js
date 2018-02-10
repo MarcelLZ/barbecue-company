@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { closeModal } from 'redux-flow/ui/reducer'
+import { newCompany } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 
@@ -14,9 +15,12 @@ class CompanyForm extends PureComponent {
   submit = e => {
     e.preventDefault()
 
-    const { form } = this.props
+    const { form, newCompany, closeModal } = this.props
     form.validateFields((error, values) => {
-      if (!error) return
+      if (!error) newCompany({
+        name: values.name,
+        cnpj: values.cnpj
+      }).then(closeModal)
     })
   }
 
@@ -42,7 +46,7 @@ class CompanyForm extends PureComponent {
           />
 
           <div className={style.actions}>
-            <Button onClick={closeModal}>Cancelar</Button>
+            <Button type='reset' onClick={closeModal}>Cancelar</Button>
             <Button onClick={this.submit}>Salvar</Button>
           </div>
         </form>
@@ -52,5 +56,8 @@ class CompanyForm extends PureComponent {
 }
 
 const Form = createForm()(CompanyForm)
-const mapDispatchToProps = dispatch => bindActionCreators({ closeModal }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  closeModal,
+  newCompany
+}, dispatch)
 export default connect(null, mapDispatchToProps)(Form)
