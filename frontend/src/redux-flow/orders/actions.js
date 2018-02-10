@@ -7,4 +7,4 @@ export const GET_ORDERS_ERROR = `${PREFIX}-GET_ALL_ERROR`
 export const GET_ORDER_ITEMS = `${PREFIX}-GET_ITEMS`
 export const ADD_ORDER_ITEM = `${PREFIX}-ADD_ITEM`
 export const REMOVE_ORDER_ITEM = `${PREFIX}-REMOVE_ITEM`
-export const DONE_ORDER = `${PREFIX}-DONE`
+export const FINISH_ORDER = `${PREFIX}-FINISH`

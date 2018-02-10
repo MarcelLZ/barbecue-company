@@ -41,7 +41,7 @@ class OrderItem extends PureComponent {
                     { item.description }
                   </ListItemContent>
                   <ListItemAction>
-                    { renderAction(item._id) }
+                    { renderAction(item.id) }
                   </ListItemAction>
                 </ListItem>
               ))

@@ -4,7 +4,7 @@ import {
   GET_ORDERS_ERROR,
   ADD_ORDER_ITEM,
   REMOVE_ORDER_ITEM,
-  DONE_ORDER
+  FINISH_ORDER
 } from './actions'
 
 const initialState = {
@@ -42,7 +42,7 @@ const orders = (state = initialState, action) => {
         ...state,
         orderItems: action.data
       }
-    case DONE_ORDER:
+    case FINISH_ORDER:
       return {
         ...state,
         orderItems: []

@@ -4,7 +4,8 @@ import {
   GET_ORDERS_RESPONSE,
   GET_ORDERS_ERROR,
   ADD_ORDER_ITEM,
-  REMOVE_ORDER_ITEM
+  REMOVE_ORDER_ITEM,
+  FINISH_ORDER
 } from './actions'
 
 export const getAllOrders = () => dispatch => {
@@ -67,10 +68,17 @@ export const removeOrderItem = itemId => (dispatch, getState) => {
     item => itemId !== item.id
   )
 
-  console.log('id:', itemId, ' - order:', orderItems)
-
   dispatch({
     type: REMOVE_ORDER_ITEM,
     data: orderItems
   })
+}
+
+export const finishOrder = () => (dispatch, getState) => {
+  const { orders } = getState()
+
+  // post com as infos do pedido
+
+  getAllOrders()(dispatch)
+  dispatch({ type: FINISH_ORDER })
 }
