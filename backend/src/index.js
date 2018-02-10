@@ -12,4 +12,4 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({type: 'application/vnd.api+json'}))
 app.use(methodOverride())
 
-app.listen(PORT, () => console.log(`Up and running on port ${PORTA}`))
+app.listen(PORT, () => console.log(`Up and running on port ${PORT}`))
