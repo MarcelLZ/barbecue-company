@@ -25,18 +25,14 @@ export const getAllCompanies = () => dispatch => {
 
 export const newCompany = company => (dispatch, getState) => {
   dispatch({ type: NEW_COMPANY_REQUEST })
-
   const { companies } = getState()
 
   return api
     .post('/companies', company)
     .then(({ data }) => {
-      const newCompany = [ ...companies.companies, data ]
-      console.log('newCompany:', newCompany)
-
       dispatch({
         type: NEW_COMPANY_RESPONSE,
-        data: newCompany
+        data: [ ...companies.companies, data ]
       })
     })
     .catch(error => dispatch({
