@@ -2,9 +2,12 @@ import express from 'express'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import methodOverride from 'method-override'
+import { errorHandler as bodyErrorHandler } from 'bodymen'
 import cors from 'cors'
 
 import routes from './api'
+import mongoose from './services/mongoose'
+import configs from '../config'
 
 const app = express()
 
@@ -13,8 +16,11 @@ app.use(bodyParser.urlencoded({'extended': 'true'}))
 app.use(bodyParser.json())
 app.use(bodyParser.json({type: 'application/vnd.api+json'}))
 app.use(methodOverride())
+app.use(bodyErrorHandler())
 app.use(cors('*'))
 app.use(routes)
+
+mongoose.connect(configs.mongo.uri)
 
 /* RUNNING */
 const PORT = process.env.PORT || 3000
