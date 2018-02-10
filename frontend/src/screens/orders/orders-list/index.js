@@ -15,7 +15,7 @@ const renderItems = items =>
 const renderAction = id =>
   (<IconButton name='delete' />)
 
-const OrderList = ({ orders }) => (
+const OrdersList = ({ orders }) => (
   <Grid>
     <Cell col={12} hidePhone>
       <DataTable shadow={0} rows={orders} style={{ width: '100%' }}>
@@ -44,7 +44,7 @@ const OrderList = ({ orders }) => (
   </Grid>
 )
 
-OrderList.propTypes = {
+OrdersList.propTypes = {
   orders: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     company: PropTypes.string,
@@ -56,4 +56,4 @@ OrderList.propTypes = {
   })).isRequired
 }
 
-export default OrderList
+export default OrdersList

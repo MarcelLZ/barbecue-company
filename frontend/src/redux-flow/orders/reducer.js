@@ -2,7 +2,9 @@
 import {
   GET_ORDERS_REQUEST,
   GET_ORDERS_RESPONSE,
-  GET_ORDERS_ERROR
+  GET_ORDERS_ERROR,
+  ADD_ORDER_ITEM,
+  REMOVE_ORDER_ITEM
 } from './actions'
 
 export const getAllOrders = () => dispatch => {
@@ -48,4 +50,27 @@ export const getAllOrders = () => dispatch => {
   //     type: GET_ORDERS_ERROR,
   //     error
   //   }))
+}
+
+export const addOrderItem = item => (dispatch, getState) => {
+  const { orders } = getState()
+
+  dispatch({
+    type: ADD_ORDER_ITEM,
+    data: [ ...orders.orderItems, item ]
+  })
+}
+
+export const removeOrderItem = itemId => (dispatch, getState) => {
+  const { orders } = getState()
+  const orderItems = orders.orderItems.filter(
+    item => itemId !== item.id
+  )
+
+  console.log('id:', itemId, ' - order:', orderItems)
+
+  dispatch({
+    type: REMOVE_ORDER_ITEM,
+    data: orderItems
+  })
 }

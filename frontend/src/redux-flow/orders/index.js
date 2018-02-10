@@ -1,14 +1,18 @@
 import {
   GET_ORDERS_REQUEST,
   GET_ORDERS_RESPONSE,
-  GET_ORDERS_ERROR
+  GET_ORDERS_ERROR,
+  ADD_ORDER_ITEM,
+  REMOVE_ORDER_ITEM,
+  DONE_ORDER
 } from './actions'
 
 const initialState = {
   isFetching: false,
   hasError: false,
   errorMessage: '',
-  orders: []
+  orders: [],
+  orderItems: []
 }
 
 const orders = (state = initialState, action) => {
@@ -30,6 +34,18 @@ const orders = (state = initialState, action) => {
         isFetching: false,
         hasError: true,
         errorMessage: action.error.message
+      }
+
+    case ADD_ORDER_ITEM:
+    case REMOVE_ORDER_ITEM:
+      return {
+        ...state,
+        orderItems: action.data
+      }
+    case DONE_ORDER:
+      return {
+        ...state,
+        orderItems: []
       }
   }
 
