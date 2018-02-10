@@ -1,7 +1,7 @@
 import { success } from '../../services/responses'
 import Company from './model'
 
-export const getAll = (req, res, next) =>
+export const index = (req, res, next) =>
   Company
     .find({})
     .then(success(res))
