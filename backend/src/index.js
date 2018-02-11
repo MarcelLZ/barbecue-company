@@ -6,7 +6,7 @@ import { errorHandler as bodyErrorHandler } from 'bodymen'
 import cors from 'cors'
 
 import routes from './api'
-import mongoose from './services/mongoose'
+import mongoose from './utils/mongoose'
 import configs from '../config'
 
 const app = express()
