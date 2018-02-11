@@ -62,9 +62,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@marcellz/react-select-field@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@marcellz/react-select-field/-/react-select-field-1.1.1.tgz#f16525d25111c05f983c32f9d7f1e1dddce89edc"
+"@marcellz/react-select-field@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@marcellz/react-select-field/-/react-select-field-1.1.2.tgz#48fe49e4f56928d3bb286b3928bb2c0815a10fa9"
   dependencies:
     prop-types "^15.6.0"
     react "^16.2.0"
