@@ -54,9 +54,9 @@ class OrderForm extends PureComponent {
             error={getFieldError('item')}
             label='Produto'
           >
-            <Option>Produto 1</Option>
-            <Option>Produto 2</Option>
-            <Option>Produto 3</Option>
+            <Option>Carne</Option>
+            <Option>Carvão</Option>
+            <Option>Cerveja</Option>
           </SelectField>
 
           <Textfield

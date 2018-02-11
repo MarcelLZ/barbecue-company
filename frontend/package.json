@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@marcellz/react-select-field": "^1.1.1",
+    "@marcellz/react-select-field": "^1.1.2",
     "axios": "^0.17.1",
     "prop-types": "^15.6.0",
     "rc-form": "^2.1.7",

@@ -1,4 +1,4 @@
-// import api from 'utils/api'
+import api from 'utils/api'
 import {
   GET_ORDERS_REQUEST,
   GET_ORDERS_RESPONSE,
@@ -77,8 +77,12 @@ export const removeOrderItem = itemId => (dispatch, getState) => {
 export const finishOrder = () => (dispatch, getState) => {
   const { orders } = getState()
 
-  // post com as infos do pedido
+  let companyOrders = orders.orderItems.map(order => ({
+    company: order.company,
+    items: [{ description: order.description, quantity: order.quantity }]
+  }))
 
-  getAllOrders()(dispatch)
-  dispatch({ type: FINISH_ORDER })
+  api
+    .post('/companies/orders', { orders: companyOrders })
+    .then(() => dispatch({ type: FINISH_ORDER }))
 }
