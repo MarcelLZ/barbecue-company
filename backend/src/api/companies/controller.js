@@ -23,3 +23,14 @@ export const addOrder = async ({ body, params: { id } }, res, next) => {
     .then(success(res))
     .catch(next)
 }
+
+export const cancelOrder = async ({ params: { id, orderId } }, res, next) => {
+  let company = await Company.findOne({ _id: id })
+  if (!company) throw Error('Company not found')
+
+  company
+    .set({ orders: company.orders.filter(order => order._id.toString() !== orderId) })
+    .save()
+    .then(success(res))
+    .catch(next)
+}
