@@ -9,18 +9,26 @@ import OrderForm from './order-form'
 import OrderItem from './order-item'
 import AddButton from 'components/add-button'
 
-const NewOrder = ({ orderItems, openModal, finishOrder }) => [
-  <OrderForm key='order-form' />,
-  <Button
-    key='done-button'
-    raised colored ripple
-    onClick={finishOrder}
-  >
-    Concluir pedido
-  </Button>,
-  <OrderItem key='order-item' orderItems={orderItems} />,
-  <AddButton key='add-button' onClick={openModal} />
-]
+import style from './new-order.styl'
+
+const NewOrder = ({ orderItems, openModal, finishOrder }) => (
+  <React.Fragment>
+    <OrderForm key='order-form' />
+
+    <div className={style.finishOrder}>
+      <Button
+        key='done-button'
+        raised colored ripple
+        onClick={finishOrder}
+      >
+        Concluir pedido
+      </Button>
+    </div>
+
+    <OrderItem key='order-item' orderItems={orderItems} />
+    <AddButton key='add-button' onClick={openModal} />
+  </React.Fragment>
+)
 
 const mapStateToProps = ({ orders }) => ({ ...orders })
 const mapDispatchToProps = dispatch => bindActionCreators({

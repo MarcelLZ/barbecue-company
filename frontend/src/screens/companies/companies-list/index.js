@@ -5,13 +5,20 @@ import {
   List, ListItem, ListItemContent, ListItemAction
 } from 'react-mdl'
 
+import TotalOrders from './total-orders'
+
 const CompaniesList = ({ companies }) => (
   <Grid>
     <Cell col={12} hidePhone>
       <DataTable shadow={0} rows={companies} style={{ width: '100%' }}>
         <TableHeader name='name'>Nome</TableHeader>
         <TableHeader name='cnpj'>CNPJ</TableHeader>
-        <TableHeader name='totalOrders'>Qtd. Pedidos</TableHeader>
+        <TableHeader
+          name='orders'
+          cellFormatter={orders => <TotalOrders orders={orders} />}
+        >
+          Qtd. Pedidos
+        </TableHeader>
       </DataTable>
     </Cell>
 
@@ -24,7 +31,7 @@ const CompaniesList = ({ companies }) => (
                 { company.name }
               </ListItemContent>
               <ListItemAction>
-                { company.totalOrders }
+                <TotalOrders orders={company.orders} />
               </ListItemAction>
             </ListItem>
           ))

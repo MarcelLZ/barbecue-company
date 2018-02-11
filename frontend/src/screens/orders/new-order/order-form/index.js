@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { closeModal } from 'redux-flow/ui/reducer'
 import { addOrderItem } from 'redux-flow/orders/reducer'
+import { getAllCompanies } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 
@@ -10,9 +11,14 @@ import { SelectField, Option } from '@marcellz/react-select-field'
 import Modal from 'components/modal'
 import rules from './form-rules'
 
-import style from './new-order.styl'
+import style from './order-form.styl'
 
 class OrderForm extends PureComponent {
+  componentDidMount () {
+    const { getAllCompanies } = this.props
+    getAllCompanies()
+  }
+
   submit = e => {
     e.preventDefault()
 
@@ -28,7 +34,7 @@ class OrderForm extends PureComponent {
 
   render () {
     const { getFieldProps, getFieldError } = this.props.form
-    const { closeModal } = this.props
+    const { closeModal, companies } = this.props
 
     return (
       <Modal>
@@ -38,9 +44,9 @@ class OrderForm extends PureComponent {
             error={getFieldError('company')}
             label='Empresa'
           >
-            <Option>Empresa 1</Option>
-            <Option>Empresa 2</Option>
-            <Option>Empresa 3</Option>
+            { companies.map(company => (
+              <Option value={company._id}>{ company.name }</Option>
+            )) }
           </SelectField>
 
           <SelectField
@@ -69,8 +75,10 @@ class OrderForm extends PureComponent {
 }
 
 const Form = createForm()(OrderForm)
+const mapStateToProps = ({ companies }) => ({ ...companies })
 const mapDispatchToProps = dispatch => bindActionCreators({
   closeModal,
-  addOrderItem
+  addOrderItem,
+  getAllCompanies
 }, dispatch)
-export default connect(null, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(Form)
