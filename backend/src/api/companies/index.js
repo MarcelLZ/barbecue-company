@@ -11,4 +11,5 @@ app.post('/', body({ name, cnpj }), create)
 app.post('/orders', body({ orders: [orderSchema] }), addOrder)
 app.delete('/:id/order/:orderId', cancelOrder)
 
+export { Company }
 export default app
