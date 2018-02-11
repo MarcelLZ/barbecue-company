@@ -13,7 +13,10 @@ const itemsSchema = new Schema({
 
 const orderSchema = new Schema({
   code: { type: String, default: getRandomInt(), index: true },
-  items: [itemsSchema]
+  items: {
+    type: [itemsSchema],
+    required: true
+  }
 })
 
 const companySchema = new Schema({
