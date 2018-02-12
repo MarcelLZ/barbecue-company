@@ -63,7 +63,7 @@ export const cancelOrder = (companyId, orderId) => dispatch => {
   dispatch({ type: CANCEL_ORDER_REQUEST })
 
   api
-    .delete(`/${companyId}/order/${orderId}`)
+    .delete(`/companies/${companyId}/order/${orderId}`)
     .then(() => dispatch({
       type: CANCEL_ORDER_RESPONSE
     }))

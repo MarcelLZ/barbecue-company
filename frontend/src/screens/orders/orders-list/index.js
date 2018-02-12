@@ -13,33 +13,33 @@ import OrderActions from './order-action'
 import orderItems from './order-items'
 
 class OrdersList extends PureComponent {
-  cancelOrder = (orderId) => {
+  cancelOrder = (companyId, orderId) => {
     const { cancelOrder } = this.props
-    cancelOrder(orderId)
+    cancelOrder(companyId, orderId)
   }
 
   render () {
     const { orders } = this.props
-    const teste = [{ _id: '6464646', code: '123232', items: [], company: { id: 1, name: 'teste' } }]
 
     return (
       <Grid>
         <Cell col={12} hidePhone>
-          <DataTable shadow={0} rows={teste} style={{ width: '100%' }}>
+          <DataTable shadow={0} rows={orders} style={{ width: '100%' }}>
             <TableHeader name='code'>Código do Pedido</TableHeader>
-            <TableHeader name='company' cellFormatter={company => (<Chip>{company.name}</Chip>)}>
+            <TableHeader name='company' cellFormatter={company => (<Chip>{company}</Chip>)}>
               Empresa
             </TableHeader>
             <TableHeader name='items' cellFormatter={orderItems}>
               Itens do Pedido
             </TableHeader>
             <TableHeader
-              name='_id'
-              cellFormatter={id => (
-                <OrderActions
-                  cancelOrder={() => this.cancelOrder(id)}
-                />
-              )}
+              name='identifiers'
+              cellFormatter={identifiers => (
+                <OrderActions cancelOrder={() => this.cancelOrder(
+                  identifiers.companyId,
+                  identifiers.orderId
+                )} />
+              ) }
             />
           </DataTable>
         </Cell>
@@ -71,7 +71,7 @@ class OrdersList extends PureComponent {
 
 OrdersList.propTypes = {
   orders: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    identifiers: PropTypes.object.isRequired,
     company: PropTypes.string,
     code: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(PropTypes.shape({
