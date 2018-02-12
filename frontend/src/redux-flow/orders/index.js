@@ -4,7 +4,9 @@ import {
   GET_ORDERS_ERROR,
   ADD_ORDER_ITEM,
   REMOVE_ORDER_ITEM,
-  FINISH_ORDER
+  FINISH_ORDER,
+  CANCEL_ORDER_REQUEST,
+  CANCEL_ORDER_RESPONSE
 } from './actions'
 
 const initialState = {
@@ -12,7 +14,7 @@ const initialState = {
   hasError: false,
   errorMessage: '',
   orders: [],
-  orderItems: []
+  items: []
 }
 
 const orders = (state = initialState, action) => {
@@ -40,12 +42,24 @@ const orders = (state = initialState, action) => {
     case REMOVE_ORDER_ITEM:
       return {
         ...state,
-        orderItems: action.data
+        items: action.data
       }
     case FINISH_ORDER:
       return {
         ...state,
-        orderItems: []
+        items: []
+      }
+
+    case CANCEL_ORDER_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case CANCEL_ORDER_RESPONSE:
+      return {
+        ...state,
+        isFetching: false,
+        orders: action.data
       }
   }
 

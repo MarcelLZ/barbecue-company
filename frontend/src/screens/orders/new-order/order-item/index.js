@@ -17,7 +17,7 @@ class OrderItem extends PureComponent {
   }
 
   render () {
-    const { orderItems } = this.props
+    const { items } = this.props
 
     const renderAction = id =>
       (<IconButton name='remove_circle' onClick={() => this.removeOrderItem(id)} />)
@@ -25,7 +25,7 @@ class OrderItem extends PureComponent {
     return (
       <Grid>
         <Cell col={12} hidePhone>
-          <DataTable shadow={0} rows={orderItems} style={{ width: '100%' }}>
+          <DataTable shadow={0} rows={items} style={{ width: '100%' }}>
             <TableHeader name='description'>Item</TableHeader>
             <TableHeader name='quantity'>Quantidade</TableHeader>
             <TableHeader name='id' cellFormatter={renderAction} />
@@ -35,7 +35,7 @@ class OrderItem extends PureComponent {
         <Cell col={12} hideTablet hideDesktop>
           <List>
             {
-              orderItems.map((item, key) => (
+              items.map((item, key) => (
                 <ListItem twoLine key={`item_${key}`}>
                   <ListItemContent avatar='thumb_up' subtitle={`Quantidade: ${item.quantity}`}>
                     { item.description }
@@ -55,7 +55,7 @@ class OrderItem extends PureComponent {
 
 OrderItem.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.any.isRequired,
     description: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired
   }))
