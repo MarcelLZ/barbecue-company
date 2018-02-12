@@ -12,11 +12,12 @@ const getOrders = async filter => {
   if (!companies) return
 
   return companies.reduce((prev, company) => {
+    let companyId = company._id
     let companyName = company.name
+
     let orderInfos = company.orders.map(order => ({
-      _id: order._id,
-      company: companyName,
-      code: order.code,
+      order: { id: order._id, code: order.code },
+      company: { id: companyId, name: companyName },
       items: order.items
     }))
 
