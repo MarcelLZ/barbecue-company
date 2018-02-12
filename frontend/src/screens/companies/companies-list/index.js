@@ -15,7 +15,9 @@ const CompaniesList = ({ companies }) => (
         <TableHeader name='cnpj'>CNPJ</TableHeader>
         <TableHeader
           name='orders'
-          cellFormatter={orders => <TotalOrders orders={orders} />}
+          cellFormatter={orders => (
+            <TotalOrders companyId={1} orders={orders} />
+          )}
         >
           Qtd. Pedidos
         </TableHeader>
@@ -25,8 +27,8 @@ const CompaniesList = ({ companies }) => (
     <Cell col={12} hideTablet hideDesktop>
       <List>
         {
-          companies.map((company, key) => (
-            <ListItem twoLine key={`company_${key}`}>
+          companies.map((company, indice) => (
+            <ListItem twoLine key={`company_${indice}`}>
               <ListItemContent avatar='business' subtitle={`CNPJ ${company.cnpj}`}>
                 { company.name }
               </ListItemContent>

@@ -10,7 +10,7 @@ import {
   CANCEL_ORDER_RESPONSE
 } from './actions'
 
-export const getAllOrders = (companyId) => dispatch => {
+export const getAllOrders = companyId => dispatch => {
   dispatch({ type: GET_ORDERS_REQUEST })
 
   let promise = companyId
