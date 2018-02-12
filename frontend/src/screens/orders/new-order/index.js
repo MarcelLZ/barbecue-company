@@ -11,7 +11,7 @@ import AddButton from 'components/add-button'
 
 import style from './new-order.styl'
 
-const NewOrder = ({ orderItems, openModal, finishOrder }) => (
+const NewOrder = ({ items, openModal, finishOrder }) => (
   <React.Fragment>
     <OrderForm key='order-form' />
 
@@ -25,7 +25,7 @@ const NewOrder = ({ orderItems, openModal, finishOrder }) => (
       </Button>
     </div>
 
-    <OrderItem key='order-item' orderItems={orderItems} />
+    <OrderItem key='order-item' items={items} />
     <AddButton key='add-button' onClick={openModal} />
   </React.Fragment>
 )

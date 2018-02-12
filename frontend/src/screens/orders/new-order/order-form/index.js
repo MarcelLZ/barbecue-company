@@ -44,8 +44,10 @@ class OrderForm extends PureComponent {
             error={getFieldError('company')}
             label='Empresa'
           >
-            { companies.map(company => (
-              <Option value={company._id}>{ company.name }</Option>
+            { companies.map((company, indice) => (
+              <Option key={`company-${indice}`} value={company._id}>
+                { company.name }
+              </Option>
             )) }
           </SelectField>
 
