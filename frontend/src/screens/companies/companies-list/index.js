@@ -31,7 +31,10 @@ const CompaniesList = ({ companies }) => (
                 { company.name }
               </ListItemContent>
               <ListItemAction>
-                <TotalOrders orders={company.orders} />
+                <TotalOrders
+                  companyId={company._id}
+                  orders={company.orders}
+                />
               </ListItemAction>
             </ListItem>
           ))

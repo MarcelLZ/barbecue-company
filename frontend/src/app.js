@@ -15,7 +15,7 @@ const App = () => (
       <Route path='/new-account' component={NewAccount} />
       <Route path='/dashboard' component={Dashborad} />
       <Route path='/companies' component={Companies} />
-      <Route path='/orders' component={Orders} />
+      <Route path='/orders/:companyId?' component={Orders} />
       <Route path='/profile' component={Profile} />
     </React.Fragment>
   </Router>

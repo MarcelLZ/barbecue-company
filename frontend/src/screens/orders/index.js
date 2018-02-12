@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getAllOrders } from 'redux-flow/orders/reducer'
@@ -19,8 +20,10 @@ class Orders extends PureComponent {
   }
 
   componentDidMount () {
-    const { getAllOrders } = this.props
-    getAllOrders()
+    const { getAllOrders, match: { params } } = this.props
+    const { companyId } = params
+
+    getAllOrders(companyId)
   }
 
   handleActiveTab (activeTab) {
@@ -52,4 +55,5 @@ class Orders extends PureComponent {
 
 const mapStateToProps = ({ orders }) => ({ ...orders })
 const mapDispatchToProps = dispatch => bindActionCreators({ getAllOrders }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Orders)
+const connectedOrders = connect(mapStateToProps, mapDispatchToProps)(Orders)
+export default withRouter(connectedOrders)
