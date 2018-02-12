@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { cancelOrder } from 'redux-flow/orders/reducer'
+import { cancelOrder, getAllOrders } from 'redux-flow/orders/reducer'
 import {
   Grid, Cell, Chip,
   DataTable, TableHeader,
@@ -14,8 +14,9 @@ import orderItems from './order-items'
 
 class OrdersList extends PureComponent {
   cancelOrder = (companyId, orderId) => {
-    const { cancelOrder } = this.props
+    const { cancelOrder, getAllOrders } = this.props
     cancelOrder(companyId, orderId)
+      .then(getAllOrders)
   }
 
   render () {
@@ -81,5 +82,8 @@ OrdersList.propTypes = {
   })).isRequired
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ cancelOrder }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  cancelOrder,
+  getAllOrders
+}, dispatch)
 export default connect(null, mapDispatchToProps)(OrdersList)

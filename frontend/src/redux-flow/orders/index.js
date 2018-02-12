@@ -58,7 +58,8 @@ const orders = (state = initialState, action) => {
     case CANCEL_ORDER_RESPONSE:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        orders: action.data
       }
   }
 

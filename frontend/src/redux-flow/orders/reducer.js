@@ -59,12 +59,18 @@ export const finishOrder = () => (dispatch, getState) => {
     .then(() => dispatch({ type: FINISH_ORDER }))
 }
 
-export const cancelOrder = (companyId, orderId) => dispatch => {
+export const cancelOrder = (companyId, orderId) => (dispatch, getState) => {
   dispatch({ type: CANCEL_ORDER_REQUEST })
 
-  api
+  const { orders } = getState()
+  const filteredOrders = orders.orders.filter(
+    order => order.identifiers.orderId !== orderId
+  )
+
+  return api
     .delete(`/companies/${companyId}/order/${orderId}`)
     .then(() => dispatch({
-      type: CANCEL_ORDER_RESPONSE
+      type: CANCEL_ORDER_RESPONSE,
+      data: filteredOrders
     }))
 }

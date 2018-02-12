@@ -55,7 +55,7 @@ class OrderItem extends PureComponent {
 
 OrderItem.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.any.isRequired,
     description: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired
   }))
