@@ -16,8 +16,9 @@ const getOrders = async filter => {
     let companyName = company.name
 
     let orderInfos = company.orders.map(order => ({
-      order: { id: order._id, code: order.code },
-      company: { id: companyId, name: companyName },
+      identifiers: { orderId: order._id, companyId },
+      code: order.code,
+      company: companyName,
       items: order.items
     }))
 
