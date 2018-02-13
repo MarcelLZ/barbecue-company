@@ -1,6 +1,7 @@
 const configs = {
   shared: {
-    env: process.env.NODE_ENV || 'development'
+    env: process.env.NODE_ENV || 'development',
+    secretToken: 'superduperbarbecuecompany'
   },
 
   development: {
