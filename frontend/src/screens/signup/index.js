@@ -1,18 +1,18 @@
 import React from 'react'
 import { Card, CardText } from 'react-mdl'
 
-import NewAccountForm from './form'
+import SignupForm from './form'
 
 import style from './new-account.styl'
 
-const NewAccount = () => (
+const Signup = () => (
   <div className={style.container}>
     <Card shadow={1}>
       <CardText>
-        <NewAccountForm />
+        <SignupForm />
       </CardText>
     </Card>
   </div>
 )
 
-export default NewAccount
+export default Signup
