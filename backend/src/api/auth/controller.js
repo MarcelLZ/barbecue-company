@@ -8,8 +8,8 @@ export const authenticate = ({ body }, res, next) => {
   const { email, password } = body
   const encryptedPassword = encrypt(password)
 
-  const generateToken = () =>
-    jwt.sign({ email }, config.secretToken, { expiresIn: '1d' })
+  const generateToken = ({ _id, email }) =>
+    jwt.sign({ _id, email }, config.secretToken, { expiresIn: '1d' })
 
   User
     .findOne({ email, password: encryptedPassword })
