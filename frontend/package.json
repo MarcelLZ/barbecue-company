@@ -38,9 +38,9 @@
       "^.+\\.(styl|css)$": "<rootDir>/config/css-stub.js",
       "^.+\\.(svg|png)$": "<rootDir>/config/icon-stub.js",
       "^components(.*)$": "<rootDir>/src/components$1",
-      "^containers(.*)$": "<rootDir>/src/containers$1",
       "^screens(.*)$": "<rootDir>/src/screens$1",
-      "^redux-flow(.*)$": "<rootDir>/src/redux-flow$1"
+      "^redux-flow(.*)$": "<rootDir>/src/redux-flow$1",
+      "^utils(.*)$": "<rootDir>/src/utils$1"
     }
   },
   "dependencies": {
