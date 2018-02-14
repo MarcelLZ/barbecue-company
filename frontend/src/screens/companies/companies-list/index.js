@@ -6,6 +6,7 @@ import {
 } from 'react-mdl'
 
 import TotalOrders from './total-orders'
+import FilterOrders from './filter-orders'
 
 const CompaniesList = ({ companies }) => (
   <Grid>
@@ -13,13 +14,11 @@ const CompaniesList = ({ companies }) => (
       <DataTable shadow={0} rows={companies} style={{ width: '100%' }}>
         <TableHeader name='name'>Nome</TableHeader>
         <TableHeader name='cnpj'>CNPJ</TableHeader>
-        <TableHeader
-          name='orders'
-          cellFormatter={orders => (
-            <TotalOrders companyId={1} orders={orders} />
-          )}
-        >
+        <TableHeader name='orders' cellFormatter={orders => <TotalOrders orders={orders} />}>
           Qtd. Pedidos
+        </TableHeader>
+        <TableHeader name='_id' cellFormatter={id => <FilterOrders companyId={id} />}>
+          Ver pedidos
         </TableHeader>
       </DataTable>
     </Cell>
@@ -33,10 +32,8 @@ const CompaniesList = ({ companies }) => (
                 { company.name }
               </ListItemContent>
               <ListItemAction>
-                <TotalOrders
-                  companyId={company._id}
-                  orders={company.orders}
-                />
+                <TotalOrders orders={company.orders} />
+                <FilterOrders companyId={company._id} />
               </ListItemAction>
             </ListItem>
           ))
