@@ -43,7 +43,7 @@ class Formulario extends PureComponent {
         />
 
         <div className={style.actions}>
-          <Link to='/new-account'>Registrarse!</Link>
+          <Link to='/signup'>Registrarse!</Link>
           <Button onClick={this.submit}>Login</Button>
         </div>
       </form>
