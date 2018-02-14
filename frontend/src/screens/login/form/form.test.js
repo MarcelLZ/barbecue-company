@@ -1,13 +1,20 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import configureStore from 'redux-mock-store'
+
 import LoginForm from '.'
 
 describe('<LoginForm />', () => {
-  it('should render correctly', () => {
-    const component = (<LoginForm />)
+  const initialState = {}
+  const mockStore = configureStore()
+  let store, component
 
-    expect(shallow(component)).toMatchSnapshot()
+  beforeEach(() => {
+    store = mockStore(initialState)
+    component = shallow(<LoginForm store={store} />)
   })
 
-  // it('should be validated on submit')
+  it('should render correctly', () => {
+    expect(component).toMatchSnapshot()
+  })
 })
