@@ -8,4 +8,5 @@ const { email, password } = User.schema.tree
 
 app.post('/', body({ email, password }), create)
 
+export { User }
 export default app
