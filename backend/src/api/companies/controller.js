@@ -20,8 +20,9 @@ export const addOrder = async ({ body }, res, next) => {
     let company = await Company.findOne({ _id: order.company })
     if (!company) throw Error(`Company '${order.company}' not found`)
 
+    const { orders } = company
     return company
-      .set({ orders: { items: [ ...order.items ] } })
+      .set({ orders: [{ items: order.items }, ...orders] })
       .save()
   }
 
