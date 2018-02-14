@@ -36,6 +36,7 @@
     "bodymen": "^1.0.3",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0"
