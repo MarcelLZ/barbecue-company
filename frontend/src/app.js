@@ -1,6 +1,7 @@
 import React from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
+import PrivateRoute from 'components/private-route'
 import Login from 'screens/login'
 import Signup from 'screens/signup'
 import Dashborad from 'screens/dashboard'
@@ -13,10 +14,10 @@ const App = () => (
     <React.Fragment>
       <Route exact path='/' component={Login} />
       <Route path='/signup' component={Signup} />
-      <Route path='/dashboard' component={Dashborad} />
-      <Route path='/companies' component={Companies} />
-      <Route path='/orders/:companyId?' component={Orders} />
-      <Route path='/profile' component={Profile} />
+      <PrivateRoute path='/dashboard' component={Dashborad} />
+      <PrivateRoute path='/companies' component={Companies} />
+      <PrivateRoute path='/orders/:companyId?' component={Orders} />
+      <PrivateRoute path='/profile' component={Profile} />
     </React.Fragment>
   </Router>
 )
