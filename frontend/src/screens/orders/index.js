@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getAllOrders } from 'redux-flow/orders/reducer'
+import { getAllOrders, finishOrder } from 'redux-flow/orders/reducer'
 import { Tabs, Tab } from 'react-mdl'
 
 import Loading from 'components/loading'
@@ -20,6 +20,16 @@ class Orders extends PureComponent {
   }
 
   componentDidMount () {
+    this._getAllOrders()
+  }
+
+  finishOrder = () => {
+    const { finishOrder } = this.props
+    finishOrder()
+      .then(this._getAllOrders)
+  }
+
+  _getAllOrders = () => {
     const { getAllOrders, match: { params } } = this.props
     const { companyId } = params
 
@@ -46,7 +56,7 @@ class Orders extends PureComponent {
 
         <ActiveContent active={activeTab}>
           <OrderList orders={orders} />
-          <NewOrder />
+          <NewOrder onFinishOrders={this.finishOrder} />
         </ActiveContent>
       </AppLayout>
     ]
@@ -54,6 +64,9 @@ class Orders extends PureComponent {
 }
 
 const mapStateToProps = ({ orders }) => ({ ...orders })
-const mapDispatchToProps = dispatch => bindActionCreators({ getAllOrders }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getAllOrders,
+  finishOrder
+}, dispatch)
 const connectedOrders = connect(mapStateToProps, mapDispatchToProps)(Orders)
 export default withRouter(connectedOrders)

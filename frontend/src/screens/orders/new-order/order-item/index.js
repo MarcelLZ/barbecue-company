@@ -57,7 +57,7 @@ OrderItem.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.any.isRequired,
     description: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired
+    quantity: PropTypes.string.isRequired
   }))
 }
 
