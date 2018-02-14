@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { login } from 'redux-flow/login/reducer'
+import { SessionStorage } from 'utils/storage'
 
 import rules from './form-rules'
 
@@ -11,13 +15,14 @@ class Formulario extends PureComponent {
   submit = (e) => {
     e.preventDefault()
 
-    const { form, login } = this.props
+    const { form, login, history } = this.props
 
     form.validateFields((error, value) => {
-      if (!error) login({
-        email: value.email,
-        password: value.password
-      })
+      if (error) return
+
+      login(value.email, value.password)
+        .then(token => SessionStorage.save('TOKEN', token))
+        .then(() => history.push('/dashboard'))
     })
   }
 
@@ -43,7 +48,7 @@ class Formulario extends PureComponent {
         />
 
         <div className={style.actions}>
-          <Link to='/signup'>Registrarse!</Link>
+          <Link to='/signup'>Registrar-se!</Link>
           <Button onClick={this.submit}>Login</Button>
         </div>
       </form>
@@ -51,4 +56,7 @@ class Formulario extends PureComponent {
   }
 }
 
-export default createForm()(Formulario)
+const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch)
+const Form = createForm()(Formulario)
+const connectedComponent = connect(null, mapDispatchToProps)(Form)
+export default withRouter(connectedComponent)
