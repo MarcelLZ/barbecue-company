@@ -30,7 +30,7 @@ const companySchema = new Schema({
     trim: true
   },
   cnpj: {
-    type: Number,
+    type: String,
     required: true,
     index: true
   },
