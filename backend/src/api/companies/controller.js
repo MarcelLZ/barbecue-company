@@ -1,15 +1,15 @@
 import { success, error } from '../../utils/responses'
 import Company from './model'
 
-export const index = (req, res, next) =>
+export const index = ({ user }, res, next) =>
   Company
-    .find({})
+    .find({ user })
     .then(success(res))
     .catch(error(res))
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body }, user }, res, next) =>
   Company
-    .create({ ...body })
+    .create({ ...body, user: user._id })
     .then(success(res))
     .catch(error(res))
 

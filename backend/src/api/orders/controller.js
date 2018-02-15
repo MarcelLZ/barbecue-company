@@ -1,14 +1,14 @@
 import { success, error } from '../../utils/responses'
 import { Company } from '../companies'
 
-export const index = ({ params: { id } }, res, next) => {
-  getOrders(id && { _id: id })
+export const index = ({ params: { id }, user }, res, next) => {
+  getOrders(user, id && { _id: id })
     .then(success(res))
     .catch(error(res))
 }
 
-const getOrders = async filter => {
-  let companies = await Company.find(filter)
+const getOrders = async (user, filter) => {
+  let companies = await Company.find({ user, ...filter })
   if (!companies) return
 
   return companies.reduce((prev, company) => {
