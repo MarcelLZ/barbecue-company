@@ -8,12 +8,6 @@ const Sidebar = () => (
   <Drawer>
     <Navigation>
       <NavigationItem
-        to='/dashboard'
-        icon='home'
-        description='Dashboard'
-      />
-
-      <NavigationItem
         to='/companies'
         icon='business'
         description='Empresas'
