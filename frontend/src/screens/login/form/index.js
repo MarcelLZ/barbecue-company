@@ -22,7 +22,7 @@ class Formulario extends PureComponent {
 
       login(value.email, value.password)
         .then(token => SessionStorage.save('TOKEN', token))
-        .then(() => history.push('/dashboard'))
+        .then(() => history.push('/companies'))
     })
   }
 
