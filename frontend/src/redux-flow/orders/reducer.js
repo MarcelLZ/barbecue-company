@@ -53,7 +53,6 @@ export const removeOrderItem = itemId => (dispatch, getState) => {
 export const finishOrder = () => (dispatch, getState) => {
   const { orders } = getState()
   const companyOrders = transformOrderRequest(orders.items)
-  console.log('COMPANY_ORDERS::', companyOrders)
 
   return api
     .post('/companies/orders', { orders: companyOrders })

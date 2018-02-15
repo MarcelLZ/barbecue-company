@@ -16,7 +16,7 @@ class OrdersList extends PureComponent {
   cancelOrder = (companyId, orderId) => {
     const { cancelOrder, getAllOrders } = this.props
     cancelOrder(companyId, orderId)
-      .then(getAllOrders)
+      .then(getAllOrders())
   }
 
   render () {
