@@ -7,8 +7,11 @@ cache:
   directories:
     "node_modules"
 
+before_script:
+  cd frontend && yarn
+
 script:
-  cd frontend && yarn && yarn test
+  yarn test
 
 after_script:
-  cd frontend && yarn test:coverage
+  yarn test:ci
