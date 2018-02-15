@@ -1,4 +1,5 @@
 import api from 'utils/api'
+import transformOrderRequest from 'utils/transform-order-request'
 import {
   GET_ORDERS_REQUEST,
   GET_ORDERS_RESPONSE,
@@ -51,11 +52,8 @@ export const removeOrderItem = itemId => (dispatch, getState) => {
 
 export const finishOrder = () => (dispatch, getState) => {
   const { orders } = getState()
-
-  let companyOrders = orders.items.map(order => ({
-    company: order.company,
-    items: [{ description: order.description, quantity: order.quantity }]
-  }))
+  const companyOrders = transformOrderRequest(orders.items)
+  console.log('COMPANY_ORDERS::', companyOrders)
 
   return api
     .post('/companies/orders', { orders: companyOrders })
