@@ -1,0 +1,5 @@
+const PREFIX = 'PROFILE'
+
+export const PROFILE_REQUEST = `${PREFIX}-REQUEST`
+export const PROFILE_RESPONSE = `${PREFIX}-RESPONSE`
+export const PROFILE_ERROR = `${PREFIX}-ERROR`
