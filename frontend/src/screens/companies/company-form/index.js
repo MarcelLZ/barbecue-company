@@ -6,6 +6,7 @@ import { newCompany } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 
+import CNPJValidator from 'utils/cnpj-validator'
 import Modal from 'components/modal'
 import rules from './form-rules'
 
@@ -24,8 +25,16 @@ class CompanyForm extends PureComponent {
     })
   }
 
+  checkCNPJ = (rule, value, callback) => {
+    if (value && !CNPJValidator(value)) {
+      callback('CNPJ inválido')
+    } else {
+      callback()
+    }
+  }
+
   render () {
-    const { getFieldProps, getFieldError } = this.props.form
+    const { getFieldProps, getFieldDecorator, getFieldError } = this.props.form
     const { closeModal } = this.props
 
     return (
@@ -37,13 +46,14 @@ class CompanyForm extends PureComponent {
             label='Nome'
             floatingLabel
           />
-          <Textfield
-            {...getFieldProps('cnpj', rules.cnpj)}
-            error={getFieldError('cnpj')}
-            label='CNPJ'
-            floatingLabel
-            pattern='-?[0-9]*(\.[0-9]+)?'
-          />
+
+          {getFieldDecorator('cnpj', { rules: [ ...rules.cnpj.rules, { validator: this.checkCNPJ } ] })(
+            <Textfield
+              error={getFieldError('cnpj')}
+              label='CNPJ'
+              floatingLabel
+            />
+          )}
 
           <div className={style.actions}>
             <Button type='reset' onClick={closeModal}>Cancelar</Button>
