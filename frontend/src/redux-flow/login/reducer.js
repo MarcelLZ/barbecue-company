@@ -1,21 +1,25 @@
 import api from 'utils/api'
+import { SessionStorage } from 'utils/storage'
 import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE,
   LOGIN_ERROR
 } from './actions'
 
+const saveUser = ({ token, email }) => {
+  SessionStorage.save('TOKEN', token)
+  SessionStorage.save('USER', email)
+}
+
 export const login = (email, password) => dispatch => {
   dispatch({ type: LOGIN_REQUEST })
 
-  return api
+  api
     .post('/auth', { email, password })
-    .then(({ data }) => {
-      dispatch({ type: LOGIN_RESPONSE })
-      return data
-    })
-    .catch(error => dispatch({
-      type: LOGIN_ERROR,
-      error
-    }))
+    .then(({ data }) => saveUser(data))
+    .then(() => dispatch({ type: LOGIN_RESPONSE }))
+}
+
+export const loginError = error => dispatch => {
+  dispatch({ type: LOGIN_ERROR, error })
 }
