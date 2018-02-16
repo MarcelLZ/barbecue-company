@@ -14,7 +14,10 @@ export const authenticate = ({ body }, res, next) => {
   User
     .findOne({ email, password: encryptedPassword })
     .then(notFound(res))
-    .then(generateToken)
+    .then(({ _id, email }) => ({
+      token: generateToken({ _id, email }),
+      email
+    }))
     .then(success(res))
     .catch(error(res))
 }
