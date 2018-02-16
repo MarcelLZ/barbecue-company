@@ -5,6 +5,7 @@ import { closeModal } from 'redux-flow/ui/reducer'
 import { newCompany } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
+import { notify } from 'react-notify-toast'
 
 import CNPJValidator from 'utils/cnpj-validator'
 import Modal from 'components/modal'
@@ -17,11 +18,16 @@ class CompanyForm extends PureComponent {
     e.preventDefault()
 
     const { form, newCompany, closeModal } = this.props
-    form.validateFields((error, values) => {
-      if (!error) newCompany({
-        name: values.name,
-        cnpj: values.cnpj
-      }).then(closeModal)
+    form.validateFields(async (error, values) => {
+      if (error) return
+
+      try {
+        await newCompany({ name: values.name, cnpj: values.cnpj})
+        closeModal()
+        notify.show('Empresa cadastrada.', 'success')
+      } catch (e) {
+        notify.show('Erro ao cadastrar empresa.', 'error')
+      }
     })
   }
 

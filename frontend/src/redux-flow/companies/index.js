@@ -3,7 +3,8 @@ import {
   GET_COMPANIES_RESPONSE,
   GET_COMPANIES_ERROR,
   NEW_COMPANY_REQUEST,
-  NEW_COMPANY_RESPONSE
+  NEW_COMPANY_RESPONSE,
+  NEW_COMPANY_ERROR
 } from './actions'
 
 const initialState = {
@@ -47,6 +48,11 @@ const companies = (state = initialState, action) => {
         ...state,
         isFetching: false,
         companies: action.data
+      }
+    case NEW_COMPANY_ERROR:
+      return {
+        ...state,
+        isFetching: false
       }
   }
 

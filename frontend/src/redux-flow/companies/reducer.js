@@ -35,8 +35,7 @@ export const newCompany = company => (dispatch, getState) => {
         data: [ ...companies.companies, data ]
       })
     })
-    .catch(error => dispatch({
-      type: NEW_COMPANY_ERROR,
-      error
-    }))
 }
+
+export const newCompanyError = () => dispatch =>
+  dispatch({ type: NEW_COMPANY_ERROR })
