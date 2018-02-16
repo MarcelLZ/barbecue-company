@@ -7,6 +7,7 @@ import cors from 'cors'
 
 import routes from './api'
 import mongoose from './utils/mongoose'
+import { errorHandler } from './utils/handlers'
 import configs from '../config'
 
 const app = express()
@@ -19,6 +20,9 @@ app.use(methodOverride())
 app.use(bodyErrorHandler())
 app.use(cors('*'))
 app.use(routes)
+
+console.log(errorHandler)
+app.use(errorHandler)
 
 mongoose.connect(configs.mongo.uri)
 
