@@ -9,7 +9,7 @@ export const updateProfile = password => dispatch => {
   dispatch({ type: PROFILE_REQUEST })
 
   return api
-    .patch('/me', { password })
+    .patch('/users/me', { password })
     .then(() => dispatch({ type: PROFILE_RESPONSE }))
     .catch(error => dispatch({
       type: PROFILE_ERROR,
