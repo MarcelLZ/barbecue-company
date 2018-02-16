@@ -20,8 +20,6 @@ app.use(methodOverride())
 app.use(bodyErrorHandler())
 app.use(cors('*'))
 app.use(routes)
-
-console.log(errorHandler)
 app.use(errorHandler)
 
 mongoose.connect(configs.mongo.uri)
