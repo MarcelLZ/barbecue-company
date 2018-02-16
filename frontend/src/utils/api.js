@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { SessionStorage } from './storage'
 
-let axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000'
+let newAxios = axios.create({
+  baseURL: 'https://api-barbecue-company.now.sh'
 })
 
-axiosInstance.interceptors.request.use(config => {
+newAxios.interceptors.request.use(config => {
   config.headers = config.headers || {}
 
   const token = SessionStorage.get('TOKEN')
@@ -17,4 +17,4 @@ axiosInstance.interceptors.request.use(config => {
   return config
 }, error => Promise.reject(error))
 
-export default axiosInstance
+export default newAxios

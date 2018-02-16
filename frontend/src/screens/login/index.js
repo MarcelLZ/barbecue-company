@@ -9,7 +9,7 @@ import Notifications from 'components/notifications'
 import style from './login.styl'
 
 const Login = ({ isFetching }) => (
-  <React.Fragment>
+  <div>
     <Notifications />
     <Loading fetching={isFetching} />
     <div className={style.container}>
@@ -19,7 +19,7 @@ const Login = ({ isFetching }) => (
         </CardText>
       </Card>
     </div>
-  </React.Fragment>
+  </div>
 )
 
 const mapStateToProps = ({ login }) => ({ ...login })
