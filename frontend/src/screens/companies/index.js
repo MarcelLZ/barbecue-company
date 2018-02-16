@@ -19,14 +19,17 @@ class Companies extends PureComponent {
   render () {
     const { isFetching, companies, openModal } = this.props
 
-    return [
-      <Loading key='loading' fetching={isFetching} />,
-      <CompanyForm key='company-form' />,
-      <AddButton key='add-company' onClick={openModal} />,
-      <AppLayout key='companies'>
-        <CompaniesList companies={companies} />
-      </AppLayout>
-    ]
+    return (
+      <React.Fragment>
+        <Loading fetching={isFetching} />
+        <CompanyForm />
+        <AddButton onClick={openModal} />
+
+        <AppLayout>
+          <CompaniesList companies={companies} />
+        </AppLayout>
+      </React.Fragment>
+    )
   }
 }
 
