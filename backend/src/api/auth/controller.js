@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { success, notFound, error } from '../../utils/responses'
 import config from '../../../config'
 import encrypt from '../../utils/encrypt'
-import { User } from '../signup'
+import { User } from '../users'
 
 export const authenticate = ({ body }, res, next) => {
   const { email, password } = body
