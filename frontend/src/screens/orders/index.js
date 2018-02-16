@@ -52,20 +52,22 @@ class Orders extends PureComponent {
     const { orders, isFetching } = this.props
     const { activeTab } = this.state
 
-    return [
-      <Loading key='loading' fetching={isFetching} />,
-      <AppLayout key='orders'>
-        <Tabs activeTab={activeTab} onChange={tabId => this.handleActiveTab(tabId)}>
-          <Tab>Pedidos</Tab>
-          <Tab>Novo Pedido</Tab>
-        </Tabs>
+    return (
+      <React.Fragment>
+        <Loading fetching={isFetching} />
+        <AppLayout>
+          <Tabs activeTab={activeTab} onChange={tabId => this.handleActiveTab(tabId)}>
+            <Tab>Pedidos</Tab>
+            <Tab>Novo Pedido</Tab>
+          </Tabs>
 
-        <ActiveContent active={activeTab}>
-          <OrderList orders={orders} />
-          <NewOrder onFinishOrders={this.finishOrder} />
-        </ActiveContent>
-      </AppLayout>
-    ]
+          <ActiveContent active={activeTab}>
+            <OrderList orders={orders} />
+            <NewOrder onFinishOrders={this.finishOrder} />
+          </ActiveContent>
+        </AppLayout>
+      </React.Fragment>
+    )
   }
 }
 

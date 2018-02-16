@@ -3,23 +3,25 @@ import encrypt from '../../utils/encrypt'
 import User from './model'
 
 export const create = async ({ body }, res, next) => {
-  const { email, password } = body
-  const encryptedPassword = encrypt(password)
+  try {
+    const { email, password } = body
+    const encryptedPassword = encrypt(password)
 
-  let user = await User.find({ email })
-  if (user) next(Error('Email already exists.'))
+    let user = await User.findOne({ email })
+    if (user) throw Error('Email já cadastrado.')
 
-  User
-    .create({ email, password: encryptedPassword })
-    .then(success(res))
-    .catch(error(res))
+    await User.create({ email, password: encryptedPassword })
+    success(res, 204)()
+  } catch (e) {
+    error(res)(e)
+  }
 }
 
 export const update = async ({ body, user }, res, next) => {
   const { email } = user
 
   let userToUpdate = await User.findOne({ email })
-  if (!userToUpdate) throw Error('User not found.')
+  if (!userToUpdate) throw Error('Usuário não existe.')
 
   const { password } = body
   const encryptedPassword = encrypt(password)

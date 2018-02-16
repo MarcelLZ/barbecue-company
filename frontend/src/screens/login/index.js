@@ -8,17 +8,19 @@ import Notifications from 'components/notifications'
 
 import style from './login.styl'
 
-const Login = ({ isFetching }) => [
-  <Notifications key='notifications' />,
-  <Loading key='loading' fetching={isFetching} />,
-  <div key='login' className={style.container}>
-    <Card shadow={1}>
-      <CardText>
-        <LoginForm />
-      </CardText>
-    </Card>
-  </div>
-]
+const Login = ({ isFetching }) => (
+  <React.Fragment>
+    <Notifications />
+    <Loading fetching={isFetching} />
+    <div className={style.container}>
+      <Card shadow={1}>
+        <CardText>
+          <LoginForm />
+        </CardText>
+      </Card>
+    </div>
+  </React.Fragment>
+)
 
 const mapStateToProps = ({ login }) => ({ ...login })
 export default connect(mapStateToProps)(Login)
