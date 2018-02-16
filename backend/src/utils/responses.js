@@ -1,6 +1,9 @@
 export const success = (response, code = 200) => payload =>
   response.status(code).json(payload)
 
+export const error = response => error =>
+  response.status(500).json({ message: error.message })
+
 export const notFound = response => payload => {
   if (payload) return payload
 
@@ -10,6 +13,3 @@ export const notFound = response => payload => {
 
   return null
 }
-
-export const error = response => error =>
-  response.status(500).json({ message: error.message })
