@@ -1,6 +1,8 @@
 const { join } = require('path')
 const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const common = require('./common')
 
 module.exports = {
@@ -13,8 +15,10 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new HtmlPlugin(common.html)
+    new CleanPlugin([common.PATH.PUBLIC], { root: common.PATH.ROOT }),
+    new HtmlPlugin(common.html),
+    new ExtractTextPlugin({ filename: '[name]-[hash].css' }),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
   ],
 
   module: {
