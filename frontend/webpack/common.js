@@ -1,6 +1,7 @@
 const { join } = require('path')
 
 const PATH = {
+  ROOT: join(__dirname, '..'),
   NODE_MODULES: join(__dirname, '..', 'node_modules'),
   SRC: join(__dirname, '..', 'src'),
   PUBLIC: join(__dirname, '..', 'public')

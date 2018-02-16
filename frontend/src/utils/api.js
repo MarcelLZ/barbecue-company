@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SessionStorage } from './storage'
 
-let newAxios = axios.create({
+const newAxios = axios.create({
   baseURL: 'https://api-barbecue-company.now.sh'
 })
 
