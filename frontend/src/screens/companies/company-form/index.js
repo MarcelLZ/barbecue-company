@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { closeModal } from 'redux-flow/ui/reducer'
-import { newCompany } from 'redux-flow/companies/reducer'
+import { newCompany, newCompanyError } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 import { notify } from 'react-notify-toast'
@@ -17,7 +17,7 @@ class CompanyForm extends PureComponent {
   submit = e => {
     e.preventDefault()
 
-    const { form, newCompany, closeModal } = this.props
+    const { form, newCompany, newCompanyError, closeModal } = this.props
     form.validateFields(async (error, values) => {
       if (error) return
 
@@ -26,6 +26,7 @@ class CompanyForm extends PureComponent {
         closeModal()
         notify.show('Empresa cadastrada.', 'success')
       } catch (e) {
+        newCompanyError()
         notify.show('Erro ao cadastrar empresa.', 'error')
       }
     })
@@ -74,6 +75,7 @@ class CompanyForm extends PureComponent {
 const Form = createForm()(CompanyForm)
 const mapDispatchToProps = dispatch => bindActionCreators({
   closeModal,
-  newCompany
+  newCompany,
+  newCompanyError
 }, dispatch)
 export default connect(null, mapDispatchToProps)(Form)

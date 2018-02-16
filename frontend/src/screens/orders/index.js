@@ -24,7 +24,7 @@ class Orders extends PureComponent {
     this._getAllOrders()
   }
 
-  finishOrder = () => {
+  finishOrder = async () => {
     try {
       const { finishOrder } = this.props
       notify.show('Pedido finalizado.', 'success')
