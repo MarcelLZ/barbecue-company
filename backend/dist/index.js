@@ -48,8 +48,6 @@ app.use((0, _methodOverride2.default)());
 app.use((0, _bodymen.errorHandler)());
 app.use((0, _cors2.default)('*'));
 app.use(_api2.default);
-
-console.log(_handlers.errorHandler);
 app.use(_handlers.errorHandler);
 
 _mongoose2.default.connect(_config2.default.mongo.uri);
