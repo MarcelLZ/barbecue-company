@@ -54,11 +54,11 @@ class OrdersList extends PureComponent {
                     Pedido: { order.code }
                   </ListItemContent>
                   <ListItemAction>
-                    <OrderActions
-                      cancelOrder={() => this.cancelOrder(
-                        order._id
-                      )}
-                    />
+                    <OrderActions cancelOrder={() => this.cancelOrder(
+                        order.identifiers.companyId,
+                        order.identifiers.orderId
+                      )
+                    } />
                   </ListItemAction>
                 </ListItem>
               ))
