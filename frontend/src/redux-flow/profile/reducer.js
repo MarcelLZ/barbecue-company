@@ -11,8 +11,7 @@ export const updateProfile = password => dispatch => {
   return api
     .patch('/users/me', { password })
     .then(() => dispatch({ type: PROFILE_RESPONSE }))
-    .catch(error => dispatch({
-      type: PROFILE_ERROR,
-      error
-    }))
 }
+
+export const updateProfileError = () => dispatch =>
+  dispatch({ type: PROFILE_ERROR })

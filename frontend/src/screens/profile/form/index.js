@@ -3,7 +3,8 @@ import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateProfile } from 'redux-flow/profile/reducer'
+import { updateProfile, updateProfileError } from 'redux-flow/profile/reducer'
+import { notify } from 'react-notify-toast'
 
 import rules from './form-rules'
 
@@ -15,10 +16,16 @@ class ProfileForm extends PureComponent {
 
     const { form, updateProfile } = this.props
 
-    form.validateFields((error, value) => {
-      if (!error) updateProfile(
-        value.password
-      )
+    form.validateFields(async (error, value) => {
+      if (error) return
+
+      try {
+        await updateProfile(value.password)
+        notify.show('Perfil atualizado.', 'success')
+      } catch (e) {
+        updateProfileError()
+        notify.show('Erro ao atualizar o perfil.', 'error')
+      }
     })
   }
 
@@ -65,5 +72,5 @@ class ProfileForm extends PureComponent {
 }
 
 const Form = createForm()(ProfileForm)
-const mapDispatchToProps = dispatch => bindActionCreators({ updateProfile }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ updateProfile, updateProfileError }, dispatch)
 export default connect(null, mapDispatchToProps)(Form)

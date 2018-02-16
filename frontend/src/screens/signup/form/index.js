@@ -4,7 +4,8 @@ import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { signup } from 'redux-flow/signup/reducer'
+import { signup, signupError } from 'redux-flow/signup/reducer'
+import { notify } from 'react-notify-toast'
 
 import rules from './form-rules'
 
@@ -14,13 +15,19 @@ class NewAccountForm extends PureComponent {
   submit = (e) => {
     e.preventDefault()
 
-    const { form, signup, history } = this.props
+    const { form, signup, signupError, history } = this.props
 
-    form.validateFields((error, value) => {
-      if (!error) signup(
-        value.email,
-        value.password
-      ).then(() => history.push('/'))
+    form.validateFields(async (error, value) => {
+      if (error) return
+
+      try {
+        await signup(value.email, value.password)
+        notify.show('Cadastrado com sucesso', 'success')
+        history.push('/')
+      } catch(e) {
+        signupError()
+        notify.show('E-mail já existe', 'error')
+      }
     })
   }
 
@@ -73,7 +80,7 @@ class NewAccountForm extends PureComponent {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ signup }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ signup, signupError }, dispatch)
 const Form = createForm()(NewAccountForm)
 const connectedComponent = connect(null, mapDispatchToProps)(Form)
 export default withRouter(connectedComponent)

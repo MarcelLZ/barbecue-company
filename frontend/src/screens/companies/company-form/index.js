@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { closeModal } from 'redux-flow/ui/reducer'
-import { newCompany } from 'redux-flow/companies/reducer'
+import { newCompany, newCompanyError } from 'redux-flow/companies/reducer'
 import { createForm } from 'rc-form'
 import { Textfield, Button } from 'react-mdl'
+import { notify } from 'react-notify-toast'
 
 import CNPJValidator from 'utils/cnpj-validator'
 import Modal from 'components/modal'
@@ -16,12 +17,18 @@ class CompanyForm extends PureComponent {
   submit = e => {
     e.preventDefault()
 
-    const { form, newCompany, closeModal } = this.props
-    form.validateFields((error, values) => {
-      if (!error) newCompany({
-        name: values.name,
-        cnpj: values.cnpj
-      }).then(closeModal)
+    const { form, newCompany, newCompanyError, closeModal } = this.props
+    form.validateFields(async (error, values) => {
+      if (error) return
+
+      try {
+        await newCompany({ name: values.name, cnpj: values.cnpj})
+        closeModal()
+        notify.show('Empresa cadastrada.', 'success')
+      } catch (e) {
+        newCompanyError()
+        notify.show('Erro ao cadastrar empresa.', 'error')
+      }
     })
   }
 
@@ -68,6 +75,7 @@ class CompanyForm extends PureComponent {
 const Form = createForm()(CompanyForm)
 const mapDispatchToProps = dispatch => bindActionCreators({
   closeModal,
-  newCompany
+  newCompany,
+  newCompanyError
 }, dispatch)
 export default connect(null, mapDispatchToProps)(Form)

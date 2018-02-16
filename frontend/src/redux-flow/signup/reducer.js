@@ -9,12 +9,10 @@ export const signup = (email, password) => dispatch => {
   dispatch({ type: SIGNUP_REQUEST })
 
   return api
-    .post('/signup', { email, password })
-    .then(() => dispatch({
-      type: SIGNUP_RESPONSE
-    }))
-    .catch(error => dispatch({
-      type: SIGNUP_ERROR,
-      error
-    }))
+    .post('/users', { email, password })
+    .then(() => dispatch({ type: SIGNUP_RESPONSE }))
+}
+
+export const signupError = () => dispatch => {
+  dispatch({ type: SIGNUP_ERROR })
 }

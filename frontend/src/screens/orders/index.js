@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getAllOrders, finishOrder } from 'redux-flow/orders/reducer'
 import { Tabs, Tab } from 'react-mdl'
+import { notify } from 'react-notify-toast'
 
 import Loading from 'components/loading'
 import AppLayout from 'components/layout'
@@ -23,10 +24,15 @@ class Orders extends PureComponent {
     this._getAllOrders()
   }
 
-  finishOrder = () => {
-    const { finishOrder } = this.props
-    finishOrder()
-      .then(this._getAllOrders)
+  finishOrder = async () => {
+    try {
+      const { finishOrder } = this.props
+      notify.show('Pedido finalizado.', 'success')
+      await finishOrder()
+      this._getAllOrders()
+    } catch (error) {
+      notify.show('Erro ao finalizar pedido.', 'error')
+    }
   }
 
   _getAllOrders = () => {
