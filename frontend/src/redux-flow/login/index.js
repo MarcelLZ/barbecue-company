@@ -22,6 +22,8 @@ const login = (state = initialState, action) => {
         isFetching: false
       }
   }
+
+  return state
 }
 
 export default login

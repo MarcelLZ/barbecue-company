@@ -14,12 +14,12 @@ const saveUser = ({ token, email }) => {
 export const login = (email, password) => dispatch => {
   dispatch({ type: LOGIN_REQUEST })
 
-  api
+  return api
     .post('/auth', { email, password })
     .then(({ data }) => saveUser(data))
     .then(() => dispatch({ type: LOGIN_RESPONSE }))
 }
 
-export const loginError = error => dispatch => {
-  dispatch({ type: LOGIN_ERROR, error })
+export const loginError = () => dispatch => {
+  dispatch({ type: LOGIN_ERROR })
 }

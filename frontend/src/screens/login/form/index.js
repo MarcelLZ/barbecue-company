@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { createForm } from 'rc-form'
+import { notify } from 'react-notify-toast'
 import { Textfield, Button } from 'react-mdl'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -23,7 +24,8 @@ class Formulario extends PureComponent {
         await login(value.email, value.password)
         history.push('/companies')
       } catch (e) {
-        loginError(e)
+        notify.show('Usuário e/ou senha incorretos.', 'error')
+        loginError()
       }
     })
   }
