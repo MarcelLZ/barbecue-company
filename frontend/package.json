@@ -15,17 +15,9 @@
     "test:ci": "yarn test:coverage --coverageReporters=lcov && cat ./coverage/lcov.info | coveralls"
   },
   "standard": {
+    "ignore": ["node_modules/**"],
     "parser": "babel-eslint",
-    "globals": [
-      "beforeEach",
-      "afterEach",
-      "describe",
-      "it",
-      "expect",
-      "context",
-      "mount",
-      "jest"
-    ]
+    "globals": ["describe", "it", "expect"]
   },
   "dependencies": {
     "@marcellz/react-select-field": "^1.1.2",
