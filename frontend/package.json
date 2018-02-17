@@ -22,7 +22,8 @@
     "globals": [
       "describe",
       "it",
-      "expect"
+      "expect",
+      "jest"
     ]
   },
   "dependencies": {
