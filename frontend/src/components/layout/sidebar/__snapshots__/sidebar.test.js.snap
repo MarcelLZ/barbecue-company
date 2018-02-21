@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> should render correctly 1`] = `
+<Drawer>
+  <Navigation>
+    <NavigationIcon
+      description="Empresas"
+      icon="business"
+      to="/companies"
+    />
+    <NavigationIcon
+      description="Pedidos"
+      icon="local_shipping"
+      to="/orders"
+    />
+    <Divisor />
+    <NavigationIcon
+      description="Minha conta"
+      icon="mood"
+      to="/profile"
+    />
+  </Navigation>
+</Drawer>
+`;

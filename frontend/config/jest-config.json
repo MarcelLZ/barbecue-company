@@ -1,0 +1,28 @@
+{
+  "rootDir": "../",
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/components/**/*.js",
+    "!src/screens/**/*.js",
+    "!src/redux-flow/**/*.js",
+    "!src/redux-flow/index.js",
+    "!src/index.js",
+    "!src/app.js",
+    "!config/*.js",
+    "!public/*.js"
+  ],
+  "moduleNameMapper": {
+    "^.+\\.(styl|css)$": "<rootDir>/config/css-stub.js",
+    "^components(.*)$": "<rootDir>/src/components$1",
+    "^screens(.*)$": "<rootDir>/src/screens$1",
+    "^redux-flow(.*)$": "<rootDir>/src/redux-flow$1",
+    "^utils(.*)$": "<rootDir>/src/utils$1"
+  },
+  "setupFiles": [
+    "raf/polyfill",
+    "<rootDir>/config/setup-tests.js"
+  ],
+  "snapshotSerializers": [
+    "<rootDir>/node_modules/enzyme-to-json/serializer"
+  ]
+}

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Notifications /> should render correctly 1`] = `
+<Notifications>
+  <div>
+    <_class
+      options={Object {}}
+    >
+      <div
+        id="notification-wrapper"
+      />
+    </_class>
+  </div>
+</Notifications>
+`;

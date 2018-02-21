@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 
 import { SessionStorage } from 'utils/storage'
@@ -13,6 +14,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         : (<Redirect to='/' />)
     )} />
   )
+}
+
+PrivateRoute.propTypes = {
+  component: PropTypes.node.isRequired
 }
 
 export default PrivateRoute
